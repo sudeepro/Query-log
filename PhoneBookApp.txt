@@ -1,0 +1,78 @@
+                                  			 PhoneBook WebApp
+                              		              ========================
+
+Model Class
+===========
+Public class Contacts{
+Integer id
+String name;
+String email;
+Long phNo;
+
+// setter and getter methods
+//toString methods
+}
+++++++++++++++++++++++++++++
+Dao layer
+=========
+@Repository
+public Interface ContactDao  Extends jpaRepository<Contacts,Integer>{
+
+}
+
+++++++++++++++++++++++++++++
+Service layer
+==============
+@Service
+Public Interface ContactService{
+
+	public void saveContact(Contacts contact);
+
+	public List<Contacts> getAllContacts();
+
+	public Contact update(Contacts contact,Integer id);
+
+	public void delete(Integer id);
+
+}
++++++++++++++++++++++++++++++
+
+Controler layer
+===============
+
+@RestController
+public class ContactController{
+
+	@Autowired
+	private ContactService service
+	
+	@getMapping("/contacts")
+	public List<Contacts> getAllContacts(){
+	
+	service.getAllContacts();
+	}
+	
+	@postMapping("/contacts")
+	public void saveContacts(@RequestBody Contacts contact){ 
+	
+	service.saveContact(contact);
+	}
+	
+	@putMapping("/contacts")
+	public Contacts updateContacts(@RequestBody Contacts contact){
+	service.update(Contacts contact)
+	return  contacts;
+	}
+	
+	@deleteMapping("/Contacts/{id}")
+	public void deleteContacts(@pathVariable("id") Integer id){
+	service.delete(id);
+	}
+
+
+
+
+
+
+
+
